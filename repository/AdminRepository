@@ -1,0 +1,16 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+package com.beardedpixels.bearded_pixels_studio.repository;
+
+import com.beardedpixels.bearded_pixels_studio.model.AdminModel;
+import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface AdminRepository extends JpaRepository<AdminModel, Integer> {
+    Optional<AdminModel> findByUsername(String username);
+}
