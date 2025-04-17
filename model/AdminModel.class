@@ -1,0 +1,107 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+package com.beardedpixels.bearded_pixels_studio.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import java.util.Objects;
+
+@Entity
+@Table(
+    name = "admin"
+)
+public class AdminModel {
+    @Id
+    @GeneratedValue(
+        strategy = GenerationType.IDENTITY
+    )
+    @Column(
+        name = "admin_id"
+    )
+    private Integer id;
+    @Column(
+        name = "username"
+    )
+    private String username;
+    @Column(
+        name = "password"
+    )
+    private String password;
+    @Column(
+        name = "email"
+    )
+    private String email;
+    @Column(
+        name = "created_at"
+    )
+    private String createdAt;
+
+    public AdminModel() {
+    }
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return this.username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCreatedAt() {
+        return this.createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        } else if (o != null && this.getClass() == o.getClass()) {
+            AdminModel that = (AdminModel)o;
+            return Objects.equals(this.id, that.id) && Objects.equals(this.username, that.username) && Objects.equals(this.password, that.password) && Objects.equals(this.email, that.email);
+        } else {
+            return false;
+        }
+    }
+
+    public int hashCode() {
+        return Objects.hash(new Object[]{this.id, this.username, this.password, this.email});
+    }
+
+    public String toString() {
+        return "AdminModel{email='" + this.email + "', username='" + this.username + "', id=" + this.id + "}";
+    }
+}
