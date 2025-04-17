@@ -1,0 +1,183 @@
+/* General styles for the whole page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0da; /* Light background */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header Styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #482994; /* Dark purple color */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+h1 {
+    font-size: 3rem;
+    flex-grow: 1;
+    text-align: center;
+    color: #fff;
+    font-family: "Doto", sans-serif;
+}
+
+header .sign-out {
+    font-size: 1.8rem;
+    color: #ffd700;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    font-family: "Doto", sans-serif;
+}
+
+header .sign-out:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Title section */
+h2 {
+    font-family: "Doto", sans-serif;
+    margin-top: 40px;
+    color: #482994; /* Dark purple color for text */
+    font-size: 30px; /* font size for subheadings */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* Table styling */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff; /* table background to white */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for table headers and cells */
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Adds a light gray border below each row */
+}
+
+/* Header styling */
+th {
+    background-color: #482994; /* purple background for header */
+    color: #fff;
+    padding: 12px 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* General styling for table cells */
+td {
+    color: #333; /* Dark gray color for cell text */
+}
+
+/* Hover effect for rows */
+tr:hover {
+    background-color: #f1f1f1; /* Light gray background on row hover */
+}
+
+/* Action buttons */
+a {
+    color: #482994; /* links color */
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover effect for action links */
+a:hover {
+    background-color: #ff4987; /* Changes the background to red on hover */
+    color: #fff;
+}
+
+/* Add some spacing between the tables */
+table + table {
+    margin-top: 40px;
+}
+
+tr:first-child th {
+    border-top: 2px solid #007BFF; /* Adds a thicker top border to the header */
+}
+
+/* Form container (Edit Album page) */
+form {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Input and Textarea styling */
+form div {
+    margin-bottom: 20px;
+}
+
+form label {
+    font-size: 1.5rem;
+    color: #482994;
+    display: block;
+    margin-bottom: 10px;
+}
+
+form input[type="text"],
+form textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.2rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: #333;
+}
+
+/* Focus effect on inputs */
+form input[type="text"]:focus,
+form textarea:focus {
+    border-color: #482994; /* Purple border when focused */
+    outline: none;
+}
+
+/* Button styling */
+form button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.5rem;
+    background-color: #482994;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button[type="submit"]:hover {
+    background-color: #ff4987; /* Change button color on hover */
+}
+
+/* Back to Dashboard link */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    text-align: center;
+    color: #482994;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #ff4987; /* Hover color change */
+}

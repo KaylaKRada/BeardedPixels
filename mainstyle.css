@@ -1,0 +1,229 @@
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+/* Body and general layout */
+body {
+    font-family: "DM Sans", sans-serif;
+    background-color: #f9f9f9;  /* Light background color for the body */
+    color: #333; /* Dark text color */
+}
+
+
+
+/* Header Styles */
+header {
+    background-color: #482994;  /* Dark purple background for header */
+    font-family: "Doto", sans-serif;
+    color: #fff;
+    padding: 20px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 3rem;
+    flex-grow: 1;
+    text-align: center;
+    font-family: "Doto", sans-serif;
+}
+
+/* Admin-Link */
+header .admin-link {
+    font-size: 1.8rem;
+    color: #ffd700;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+header .admin-link:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+
+
+/* Main content styling */
+main {
+    padding: 40px;
+}
+
+
+
+/* Albums Section */
+.albums {
+    margin-bottom: 40px;
+}
+
+.albums h2 {
+    font-size: 2.5rem;
+    font-family: "Doto", sans-serif;
+    color: #482994;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.albums div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.albums div div {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.albums div div:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.albums h3 {
+    font-family: "Doto", sans-serif;
+    font-size: 1.8rem;
+    color: #482994;
+    margin-bottom: 10px;
+}
+
+.albums p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+
+
+
+
+/* Sessions & Pricing Section */
+.photos {
+    background-color: #482994; /* Purple background for the */
+    color: #fff;
+    padding: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.photos h2 {
+    font-size: 2.5rem;
+    font-family: "Doto", sans-serif;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.photos div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.photos div div {
+    background-color: #fff;
+    color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.photos div div:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.photos p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+
+
+/* Album cover image styling */
+.album-photo {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+
+
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem; /* Adjusts header font size for smaller screens */
+    }
+
+    .albums h2, .photos h2 {
+        font-size: 2rem; /* Reduces title font size for albums and photos */
+    }
+
+    .albums div, .photos div {
+        grid-template-columns: 1fr; /* Stacks grid items into a single column on small screens */
+    }
+}
+
+
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000; /* Ensure the modal stays on top of other content */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background */
+    overflow: auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* Modal Content (Image) Styling */
+.modal-content {
+    margin: 5% auto;
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    display: block;
+}
+
+
+
+/* Close button in top-right corner */
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 1001; /* Ensure the close button is above the modal content */
+}
+
+.close:hover,
+.close:focus {
+    color: #ffd700; /* Hover color gold */
+}
