@@ -1,0 +1,14 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+package com.beardedpixels.bearded_pixels_studio.repository;
+
+import com.beardedpixels.bearded_pixels_studio.model.AlbumsModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface AlbumsRepository extends JpaRepository<AlbumsModel, Long> {
+}
