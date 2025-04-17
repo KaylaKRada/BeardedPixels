@@ -1,0 +1,47 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+package com.beardedpixels.bearded_pixels_studio.service;
+
+import com.beardedpixels.bearded_pixels_studio.model.AlbumsModel;
+import com.beardedpixels.bearded_pixels_studio.repository.AlbumsRepository;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class AlbumsService {
+    private final AlbumsRepository albumsRepository;
+
+    @Autowired
+    public AlbumsService(AlbumsRepository albumsRepository) {
+        this.albumsRepository = albumsRepository;
+    }
+
+    public List<AlbumsModel> getAllAlbums() {
+        return this.albumsRepository.findAll();
+    }
+
+    public AlbumsModel getAlbumById(Long id) {
+        return (AlbumsModel)this.albumsRepository.findById(id).orElseThrow(() -> {
+            return new RuntimeException("Album not found");
+        });
+    }
+
+    public void updateAlbum(Long id, AlbumsModel album) {
+        AlbumsModel existingAlbum = this.getAlbumById(id);
+        existingAlbum.setTitle(album.getTitle());
+        existingAlbum.setDescription(album.getDescription());
+        this.albumsRepository.save(existingAlbum);
+    }
+
+    public void saveAlbum(AlbumsModel album) {
+        this.albumsRepository.save(album);
+    }
+
+    public void deleteAlbum(Long id) {
+        this.albumsRepository.deleteById(id);
+    }
+}
