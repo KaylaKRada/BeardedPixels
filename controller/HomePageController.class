@@ -1,0 +1,35 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+package com.beardedpixels.bearded_pixels_studio.controller;
+
+import com.beardedpixels.bearded_pixels_studio.model.AlbumsModel;
+import com.beardedpixels.bearded_pixels_studio.service.AlbumsService;
+import com.beardedpixels.bearded_pixels_studio.service.PhotosService;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class HomePageController {
+    private final AlbumsService albumsService;
+    private final PhotosService photosService;
+
+    @Autowired
+    public HomePageController(AlbumsService albumsService, PhotosService photosService) {
+        this.albumsService = albumsService;
+        this.photosService = photosService;
+    }
+
+    @GetMapping({"/"})
+    public String showHomePage(Model model) {
+        List<AlbumsModel> albums = this.albumsService.getAllAlbums();
+        model.addAttribute("albums", this.albumsService.getAllAlbums());
+        model.addAttribute("photos", this.photosService.getAllPhotos());
+        return "index";
+    }
+}
