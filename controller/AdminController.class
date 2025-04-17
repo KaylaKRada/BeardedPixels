@@ -1,0 +1,151 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+package com.beardedpixels.bearded_pixels_studio.controller;
+
+import com.beardedpixels.bearded_pixels_studio.model.AdminModel;
+import com.beardedpixels.bearded_pixels_studio.model.AlbumsModel;
+import com.beardedpixels.bearded_pixels_studio.model.PhotosModel;
+import com.beardedpixels.bearded_pixels_studio.service.AdminService;
+import com.beardedpixels.bearded_pixels_studio.service.AlbumsService;
+import com.beardedpixels.bearded_pixels_studio.service.PhotosService;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+@Controller
+public class AdminController {
+    private final AdminService adminService;
+    private final AlbumsService albumsService;
+    private final PhotosService photosService;
+
+    @Autowired
+    public AdminController(AdminService adminService, AlbumsService albumsService, PhotosService photosService) {
+        this.adminService = adminService;
+        this.albumsService = albumsService;
+        this.photosService = photosService;
+    }
+
+    @GetMapping({"/adminlogin"})
+    public String showLoginPage() {
+        return "login_page";
+    }
+
+    @PostMapping({"/adminlogin"})
+    public String authenticate(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
+        AdminModel admin = this.adminService.authenticate(username, password);
+        if (admin != null) {
+            return "redirect:/adminDashboard";
+        } else {
+            model.addAttribute("error", "Invalid username or password");
+            return "login_page";
+        }
+    }
+
+    @GetMapping({"/adminDashboard"})
+    public String showAdminDashboard(Model model) {
+        model.addAttribute("albums", this.albumsService.getAllAlbums());
+        model.addAttribute("photos", this.photosService.getAllPhotos());
+        return "admin_dashboard";
+    }
+
+    @GetMapping({"/admin/albums/edit/{id}"})
+    public String showEditAlbumForm(@PathVariable Long id, Model model) {
+        AlbumsModel album = this.albumsService.getAlbumById(id);
+        model.addAttribute("album", album);
+        return "admin_edit_album";
+    }
+
+    @PostMapping({"/admin/albums/edit/{id}"})
+    public String updateAlbum(@PathVariable Long id, @ModelAttribute AlbumsModel album) {
+        this.albumsService.updateAlbum(id, album);
+        return "redirect:/adminDashboard";
+    }
+
+    @GetMapping({"/admin/albums/delete/{id}"})
+    public String deleteAlbum(@PathVariable Long id) {
+        this.albumsService.deleteAlbum(id);
+        return "redirect:/adminDashboard";
+    }
+
+    @GetMapping({"/admin/albums/new"})
+    public String showAddAlbumForm(Model model) {
+        model.addAttribute("album", new AlbumsModel());
+        return "admin_add_album";
+    }
+
+    @PostMapping({"/admin/albums/new"})
+    public String addAlbum(@ModelAttribute AlbumsModel album, @RequestParam("coverPhoto") MultipartFile coverPhoto) {
+        String uploadDir = "uploads/album-covers/";
+        if (!coverPhoto.isEmpty()) {
+            try {
+                String fileName = coverPhoto.getOriginalFilename();
+                fileName = fileName.replaceAll("[^a-zA-Z0-9.-]", "_");
+                Path path = Paths.get(uploadDir + fileName);
+                Files.createDirectories(path.getParent());
+                Files.copy(coverPhoto.getInputStream(), path, new CopyOption[]{StandardCopyOption.REPLACE_EXISTING});
+                album.setCoverPhotoUrl("/" + uploadDir + fileName);
+            } catch (IOException var6) {
+                IOException e = var6;
+                e.printStackTrace();
+                return "redirect:/error";
+            }
+        } else {
+            album.setCoverPhotoUrl("/uploads/default-cover.jpg");
+        }
+
+        this.albumsService.saveAlbum(album);
+        return "redirect:/adminDashboard";
+    }
+
+    @GetMapping({"/admin/photos/edit/{id}"})
+    public String showEditPhotoForm(@PathVariable Long id, Model model) {
+        PhotosModel photo = this.photosService.getPhotoById(id);
+        model.addAttribute("photo", photo);
+        model.addAttribute("albums", this.albumsService.getAllAlbums());
+        return "admin_edit_photo";
+    }
+
+    @PostMapping({"/admin/photos/edit/{id}"})
+    public String updatePhoto(@PathVariable Long id, @ModelAttribute PhotosModel photo) {
+        this.photosService.updatePhoto(id, photo);
+        return "redirect:/adminDashboard";
+    }
+
+    @GetMapping({"/admin/photos/delete/{id}"})
+    public String deletePhoto(@PathVariable Long id) {
+        this.photosService.deletePhoto(id);
+        return "redirect:/adminDashboard";
+    }
+
+    @GetMapping({"/admin/photos/new"})
+    public String showAddPhotoForm(Model model) {
+        return "admin_add_photo";
+    }
+
+    @PostMapping({"/admin/photos/new"})
+    public String addPhoto(@RequestParam("title") String title, @RequestParam("description") String description, @RequestParam("price") BigDecimal price, Model model) {
+        PhotosModel newPhoto = new PhotosModel();
+        newPhoto.setTitle(title);
+        newPhoto.setDescription(description);
+        newPhoto.setPrice(price);
+        this.photosService.savePhoto(newPhoto);
+        model.addAttribute("success", "Session added successfully.");
+        return "redirect:/adminDashboard";
+    }
+}
