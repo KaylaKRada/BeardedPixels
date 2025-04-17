@@ -1,0 +1,19 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+package com.beardedpixels.bearded_pixels_studio;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class BeardedPixelsStudioApplication {
+    public BeardedPixelsStudioApplication() {
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(BeardedPixelsStudioApplication.class, args);
+    }
+}
