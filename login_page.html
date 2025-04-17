@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="form">
+  <form action="/adminlogin" method="post">
+    <h2>Login</h2>
+    <div class="input-box">
+      <i class="fa fa-user" aria-hidden="true"></i>
+      <input type="text" name="username" placeholder="Username" required>
+    </div>
+    <div class="input-box">
+      <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+      <input type="password" name="password" placeholder="Password" required>
+    </div>
+    <div class="input-box">
+      <input type="submit" value="Login">
+    </div>
+    <a href="#">(Under Construction)</a>
+    <!-- Display error message if login fails -->
+    <p th:if="${error}" th:text="${error}" style="color:red;"></p>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Session</title>
+  <link rel="stylesheet" href="/css/admin_dashboard.css">
+</head>
+<body>
+<h1>Add New Session</h1>
+
+<form action="/admin/photos/new" method="POST">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea id="description" name="description" class="form-control" required></textarea>
+  </div>
+  <div class="form-group">
+    <label for="price">Price</label>
+    <input type="number" id="price" name="price" class="form-control" step="0.01" required>
+  </div>
+  <button type="submit" class="btn btn-success">Add Session</button>
+</form>
+<a href="/adminDashboard">Back to Dashboard</a>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/admin_dashboard.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Dela+Gothic+One&family=Doto:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+<h1>Admin Dashboard</h1>
+<a href="/" class="sign-out">Sign Out</a>
+</header>
+
+
+
+
+<h2>Albums</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Photo</th>
+    <th>Album Name</th>
+    <th>Description</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="album : ${albums}">
+    <td><img th:src="${album.coverPhotoUrl}" alt="Album Cover" style="max-width: 100px; max-height: 100px;" /></td>
+    <td th:text="${album.title}"></td>
+    <td th:text="${album.description}"></td>
+    <td>
+      <a th:href="@{'/admin/albums/edit/' + ${album.id}}">Edit</a> | <a href="/admin/albums/new">Add New Album</a> |
+      <a th:href="@{'/admin/albums/delete/' + ${album.id}}" onclick="return confirm('Are you sure you want to delete this album?');">Delete</a>
+    </td>
+  </tr>
+  <tr th:if="${#lists.isEmpty(albums)}">
+    <td colspan="3">No albums available</td>
+  </tr>
+  </tbody>
+</table>
+
+<h2>Sessions</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="photo : ${photos}">
+    <td th:text="${photo.title}"></td>
+    <td th:text="${photo.description}"></td>
+    <td th:text="${photo.price}"></td>
+    <td>
+      <a th:href="@{'/admin/photos/edit/' + ${photo.id}}">Edit</a> | <a href="/admin/photos/new">Add New Session</a> |
+      <a th:href="@{'/admin/photos/delete/' + ${photo.id}}" onclick="return confirm('Are you sure you want to delete this photo?');">Delete</a>
+    </td>
+  </tr>
+  <tr th:if="${#lists.isEmpty(photos)}">
+    <td colspan="4">No sessions available</td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

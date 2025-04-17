@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bearded Pixels Studio</title>
+    <link rel="stylesheet" href="/css/mainstyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Dela+Gothic+One&family=Doto:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1>Bearded Pixels Studio</h1>
+    <a href="/adminlogin" class="admin-link">Admin Login</a>
+</header>
+
+<main>
+    <section class="albums">
+        <h2>Albums</h2>
+        <div>
+            <div th:each="album : ${albums}">
+                <h3 th:text="${album.title}"></h3>
+                <p th:text="${album.description}"></p>
+                <!-- Album cover image with a click to open the modal -->
+                <img th:src="@{${album.coverPhotoUrl}}" alt="Album Cover" class="album-photo" onclick="openModal(this)">
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal to display larger image -->
+    <div id="modal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+
+    <section class="photos">
+        <h2>Sessions & Pricing</h2>
+        <div>
+            <div th:each="photo : ${photos}">
+                <p th:text="${photo.description}"></p>
+                <p th:text="${photo.price}"></p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+    // Open modal and set image source
+    function openModal(img) {
+        var modal = document.getElementById("modal");
+        var modalImg = document.getElementById("modal-img");
+        modal.style.display = "block";  // Show modal
+        modalImg.src = img.src;  // Set image in modal
+    }
+
+    // Close modal
+    function closeModal() {
+        var modal = document.getElementById("modal");
+        modal.style.display = "none";  // Hide modal
+    }
+</script>
+</body>
+</html>
