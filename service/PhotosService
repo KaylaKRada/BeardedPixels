@@ -1,0 +1,48 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+package com.beardedpixels.bearded_pixels_studio.service;
+
+import com.beardedpixels.bearded_pixels_studio.model.PhotosModel;
+import com.beardedpixels.bearded_pixels_studio.repository.PhotosRepository;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class PhotosService {
+    private final PhotosRepository photosRepository;
+
+    @Autowired
+    public PhotosService(PhotosRepository photosRepository) {
+        this.photosRepository = photosRepository;
+    }
+
+    public List<PhotosModel> getAllPhotos() {
+        return this.photosRepository.findAll();
+    }
+
+    public PhotosModel getPhotoById(Long id) {
+        return (PhotosModel)this.photosRepository.findById(id).orElseThrow(() -> {
+            return new RuntimeException("Photo not found");
+        });
+    }
+
+    public void updatePhoto(Long id, PhotosModel photo) {
+        PhotosModel existingPhoto = this.getPhotoById(id);
+        existingPhoto.setTitle(photo.getTitle());
+        existingPhoto.setDescription(photo.getDescription());
+        existingPhoto.setPrice(photo.getPrice());
+        this.photosRepository.save(existingPhoto);
+    }
+
+    public void savePhoto(PhotosModel photo) {
+        this.photosRepository.save(photo);
+    }
+
+    public void deletePhoto(Long id) {
+        this.photosRepository.deleteById(id);
+    }
+}
