@@ -1,0 +1,81 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+package com.beardedpixels.bearded_pixels_studio.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import java.math.BigDecimal;
+
+@Entity
+@Table(
+    name = "photos"
+)
+public class PhotosModel {
+    @Id
+    @GeneratedValue(
+        strategy = GenerationType.IDENTITY
+    )
+    @Column(
+        name = "photo_id"
+    )
+    private Long id;
+    @Column(
+        name = "title"
+    )
+    private String title;
+    @Column(
+        name = "description"
+    )
+    private String description;
+    @Column(
+        name = "price"
+    )
+    private BigDecimal price;
+
+    public PhotosModel() {
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public BigDecimal getPrice() {
+        return this.price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public String toString() {
+        Long var10000 = this.id;
+        return "PhotosModel{id=" + var10000 + ", title='" + this.title + "', description='" + this.description + "', price=" + String.valueOf(this.price) + "}";
+    }
+}
