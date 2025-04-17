@@ -1,0 +1,90 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+package com.beardedpixels.bearded_pixels_studio.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(
+    name = "albums"
+)
+public class AlbumsModel {
+    @Id
+    @GeneratedValue(
+        strategy = GenerationType.IDENTITY
+    )
+    @Column(
+        name = "album_id"
+    )
+    private Long id;
+    @Column(
+        name = "title"
+    )
+    private String title;
+    @Column(
+        name = "description"
+    )
+    private String description;
+    @Column(
+        name = "created_at"
+    )
+    private LocalDateTime createdAt;
+    private String coverPhotoUrl;
+
+    public AlbumsModel() {
+    }
+
+    public String getCoverPhotoUrl() {
+        return this.coverPhotoUrl;
+    }
+
+    public void setCoverPhotoUrl(String coverPhotoUrl) {
+        this.coverPhotoUrl = coverPhotoUrl;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return this.createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String toString() {
+        Long var10000 = this.id;
+        return "AlbumsModel{id=" + var10000 + ", name='" + this.title + "', description='" + this.description + "', createdAt=" + String.valueOf(this.createdAt) + "}";
+    }
+}
